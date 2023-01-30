@@ -1,33 +1,14 @@
-import { connection } from "../../database/db";
+import prisma from "../../config/database";
 import { StreamingService } from "../../protocols";
-import { QueryResult } from "pg";
 
-async function selectStreamingServices(): Promise<
-  QueryResult<StreamingService>
-> {
-  return await connection.query(
-    `
-        SELECT 
-            id AS streaming_service_id, 
-            name AS streaming_service_name 
-        FROM streaming_services;
-        `
-  );
+async function selectStreamingServices() {
+  return await prisma.streaming_services.findMany();
 }
 
-async function selectStreamingServiceById(
-  streaming_service_id: number
-): Promise<QueryResult<StreamingService>> {
-  return await connection.query(
-    `
-        SELECT 
-          id AS streaming_service_id, 
-          name AS streaming_service_name 
-        FROM movie_genres
-        WHERE id = $1;
-        `,
-    [streaming_service_id]
-  );
+async function selectStreamingServiceById(id: number) {
+  return await prisma.streaming_services.findUnique({
+    where: { id },
+  });
 }
 
 const streamingServicesRepositoy = {

@@ -5,7 +5,7 @@ export async function getStreamingServices(req: Request, res: Response) {
   try {
     const result = await streamingServicesRepositoy.selectStreamingServices();
 
-    const streamingServices = result.rows;
+    const streamingServices = result;
 
     return res.status(200).send(streamingServices);
   } catch (error) {
