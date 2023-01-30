@@ -3,13 +3,13 @@ import { notFoundError } from "../../errors";
 import movieGenresRepositoy from "../../repositories/movieGenres-repository";
 
 async function getMovieGenres(): Promise<movie_genres[]> {
-  const movies = await movieGenresRepositoy.selectMovieGenres();
+  const movieGenres = await movieGenresRepositoy.selectMovieGenres();
 
-  if (!movies) {
+  if (!movieGenres) {
     throw notFoundError();
   }
 
-  return movies;
+  return movieGenres;
 }
 
 const movieGenresService = {
