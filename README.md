@@ -1,4 +1,4 @@
-# POC_TypeScript (Wishlist)
+# POC_TypeScript_Prisma (Wishlist)
 
 An application to control your movie wish list.
 
