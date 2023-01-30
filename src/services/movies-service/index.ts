@@ -12,13 +12,13 @@ async function postMovie(
     streaming_service_id
   );
 
-  if (streaming.rows.length === 0) {
+  if (!streaming) {
     throw notFoundError();
   }
 
   const genre = await movieGenresRepositoy.selectMovieGenreById(genre_id);
 
-  if (genre.rows.length === 0) {
+  if (!genre) {
     throw notFoundError();
   }
 
@@ -28,7 +28,7 @@ async function postMovie(
     genre_id
   );
 
-  if (movies.rowCount !== 0) {
+  if (movies) {
     throw duplicatedItem();
   }
 
@@ -48,7 +48,7 @@ async function getMovies() {
 async function deleteMovie(movie_id: number) {
   const movie = await moviesRepositoy.selectMovieById(movie_id);
 
-  if (movie.rowCount === 0) {
+  if (!movie) {
     throw notFoundError();
   }
 
@@ -62,7 +62,7 @@ async function updateMovie(
 ) {
   const movie = await moviesRepositoy.selectMovieById(movie_id);
 
-  if (movie.rowCount === 0) {
+  if (!movie) {
     throw notFoundError();
   }
 
@@ -72,7 +72,7 @@ async function updateMovie(
 async function getMoviesByGenre(genre_id: number) {
   const movie_genre = await movieGenresRepositoy.selectMovieGenreById(genre_id);
 
-  if (movie_genre.rows.length === 0) {
+  if (!movie_genre) {
     throw notFoundError();
   }
 

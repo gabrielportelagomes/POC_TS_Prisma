@@ -29,7 +29,7 @@ export async function getMovies(req: Request, res: Response) {
   try {
     const movies = await moviesService.getMovies();
 
-    return res.status(200).send(movies.rows);
+    return res.status(200).send(movies);
   } catch (error) {
     if (error.name === "NotFoundError") {
       return res.status(404).send(error.message);
@@ -80,7 +80,7 @@ export async function getMoviesByGenre(req: Request, res: Response) {
   try {
     const movies = await moviesService.getMoviesByGenre(genre_id);
 
-    return res.status(200).send(movies.rows);
+    return res.status(200).send(movies);
   } catch (error) {
     if (error.name === "NotFoundError") {
       return res.status(404).send(error.message);
