@@ -1,11 +1,11 @@
+import { movie_genres } from "@prisma/client";
 import prisma from "../../config/database";
-import { MovieGenre } from "../../protocols";
 
-async function selectMovieGenres() {
+async function selectMovieGenres(): Promise<movie_genres[]> {
   return await prisma.movie_genres.findMany();
 }
 
-async function selectMovieGenreById(id: number) {
+async function selectMovieGenreById(id: number): Promise<movie_genres> {
   return await prisma.movie_genres.findUnique({
     where: { id },
   });
