@@ -11,8 +11,21 @@ An application to control your movie wish list.
 npm i
 ```
 
-3. Create a PostgresQL database using the provided dump
-4. Run the back-end
+3. Create a PostgreSQL database with whatever name you want
+4. Configure the `.env` file using the `.env.example` file
+5. Run all migrations
+
+```
+npm run migration:run
+```
+
+6. Seed db
+
+```
+npm run prisma:seed
+```
+
+7. Run the back-end
 
 ```
 npm run dev
@@ -30,8 +43,9 @@ npm run dev
   ```
   [
     {
-    "movie_genre_id": 1,
-    "movie_genre_name": "Drama"
+    "id": 1,
+    "name": "Drama",
+    "created_at": "2023-01-23T16:34:23.703Z"
     }
   ]
   ```
@@ -46,8 +60,9 @@ npm run dev
   ```
   [
     {
-    "streaming_service_id": 1,
-    "streaming_service_name": "Netflix"
+    "id": 1,
+    "name": "Netflix",
+    "created_at": "2023-01-23T16:32:16.959Z"
     }
   ]
   ```
@@ -63,13 +78,17 @@ npm run dev
   [
     {
     "id": 1,
-    "name": "Mad Max: Estrada da Fúria",
-    "streamign_service": "HBO Max",
-    "genre": "Ação",
+    "name": "Mad Max: Estrada da FúriaI",
+    "streaming_services": {
+      "name": "HBO Max"
+    },
+    "movie_genres": {
+      "name": "Ação"
+    },
     "watched": true,
     "date_watched": "23/01/2023",
     "rating": 5,
-    "created_at": "2023-01-23T17:13:47.514Z"
+    "created_at": "2023-01-23T16:36:22.684Z"
     }
   ]
   ```
@@ -80,13 +99,11 @@ npm run dev
   Body format:
 
   ```
-  [
     {
     "name": "Mad Max: Estrada da Fúria",
     "streaming_service_id": 2,
     "genre_id": 6
     }
-  ]
   ```
 
 - **PATCH("/movies/:id")**
@@ -95,11 +112,9 @@ npm run dev
   Body format:
 
   ```
-  [
     {
     "rating": 5
     }
-  ]
   ```
 
 - **DELETE("/movies/:id")**
@@ -115,13 +130,17 @@ npm run dev
   [
     {
     "id": 1,
-    "name": "Mad Max: Estrada da Fúria",
-    "streamign_service": "HBO Max",
-    "genre": "Ação",
+    "name": "Mad Max: Estrada da FúriaI",
+    "streaming_services": {
+      "name": "HBO Max"
+    },
+    "movie_genres": {
+      "name": "Ação"
+    },
     "watched": true,
     "date_watched": "23/01/2023",
     "rating": 5,
-    "created_at": "2023-01-23T17:13:47.514Z"
+    "created_at": "2023-01-23T16:36:22.684Z"
     }
   ]
   ```
