@@ -21,7 +21,7 @@ async function postMovie(
   if (!genre) {
     throw notFoundError();
   }
-
+  console.log(name);
   const movies = await moviesRepositoy.selectMoviesByInfos(
     name,
     streaming_service_id,
