@@ -1,31 +1,14 @@
-import { connection } from "../../database/db";
+import prisma from "../../config/database";
 import { MovieGenre } from "../../protocols";
-import { QueryResult } from "pg";
 
-async function selectMovieGenres(): Promise<QueryResult<MovieGenre>> {
-  return await connection.query(
-    `
-        SELECT 
-            id AS movie_genre_id, 
-            name AS movie_genre_name 
-        FROM movie_genres;
-        `
-  );
+async function selectMovieGenres() {
+  return await prisma.movie_genres.findMany();
 }
 
-async function selectMovieGenreById(
-  genre_id: number
-): Promise<QueryResult<MovieGenre>> {
-  return await connection.query(
-    `
-        SELECT 
-          id AS movie_genre_id, 
-          name AS movie_genre_name 
-        FROM movie_genres
-        WHERE id = $1;
-        `,
-    [genre_id]
-  );
+async function selectMovieGenreById(id: number) {
+  return await prisma.movie_genres.findUnique({
+    where: { id },
+  });
 }
 
 const movieGenresRepositoy = {
