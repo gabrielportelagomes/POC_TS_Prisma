@@ -51,3 +51,18 @@ export type GenreIdParam = {
 export type MovieRating = {
   rating: number;
 };
+
+export type Movies = {
+  id: number;
+  name: string;
+  streaming_services: {
+    name: string;
+  };
+  movie_genres: {
+    name: string;
+  };
+  watched: boolean;
+  date_watched: string;
+  rating: number;
+  created_at: Date;
+};
