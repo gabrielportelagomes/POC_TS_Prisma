@@ -70,8 +70,9 @@ async function updateMovieById(
   return await prisma.movies.update({
     where: { id },
     data: {
-      rating,
+      watched: true,
       date_watched,
+      rating,
     },
   });
 }
