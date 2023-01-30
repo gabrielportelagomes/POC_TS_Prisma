@@ -31,6 +31,8 @@ npm run prisma:seed
 npm run dev
 ```
 
+OBS: Import the collection through the "thunder-collection cars.json" file to test the routes in the Thunder Client
+
 ## Routes
 
 ### Movie Genres
