@@ -1,11 +1,13 @@
+import { streaming_services } from "@prisma/client";
 import prisma from "../../config/database";
-import { StreamingService } from "../../protocols";
 
-async function selectStreamingServices() {
+async function selectStreamingServices(): Promise<streaming_services[]> {
   return await prisma.streaming_services.findMany();
 }
 
-async function selectStreamingServiceById(id: number) {
+async function selectStreamingServiceById(
+  id: number
+): Promise<streaming_services> {
   return await prisma.streaming_services.findUnique({
     where: { id },
   });
